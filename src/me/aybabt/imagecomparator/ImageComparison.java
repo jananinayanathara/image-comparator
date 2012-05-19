@@ -117,9 +117,9 @@ public class ImageComparison {
 	// Logic
 	////////////////////////////////////////////////////////////////////////////
 
-	private static void exit(int code){
-		System.out.println("EXIT - Leaving with code " + code);
-		System.exit(code);
+	private static void exit(String msg){
+		System.out.println("EXIT : " + msg);
+		System.exit(0);
 	}
 
 	private void getFile(){
@@ -134,7 +134,7 @@ public class ImageComparison {
 		int returnVal = chooser.showOpenDialog(frame);
 
 		if(returnVal != JFileChooser.APPROVE_OPTION) {
-			exit(107);
+			exit("No file selected");
 
 		}
 		mFirstFile = chooser.getSelectedFile();
@@ -142,7 +142,7 @@ public class ImageComparison {
 		returnVal = chooser.showOpenDialog(frame);
 
 		if(returnVal != JFileChooser.APPROVE_OPTION) {
-			exit(115);
+			exit("No file selected");
 		}
 
 		mSecondFile = chooser.getSelectedFile();
@@ -154,14 +154,14 @@ public class ImageComparison {
 			mFirstImg = ImageIO.read(mFirstFile);
 		} catch (IOException e) {
 			if(D) e.printStackTrace();
-			exit(127);
+			exit("File can't be read.");
 		}
 
 		try {
 			mSecondImg = ImageIO.read(mSecondFile);
 		} catch (IOException e) {
 			if(D) e.printStackTrace();
-			exit(134);
+			exit("File can't be read.");
 		}
 	}
 
@@ -233,7 +233,7 @@ public class ImageComparison {
 
 		} catch ( IOException e ) {
 			if(D) e.printStackTrace();
-			exit(217);
+			exit("File can't be read.");
 		}
 
 		try {
@@ -248,7 +248,7 @@ public class ImageComparison {
 			bufWriter.close();
 		} catch (IOException e) {
 			if(D) e.printStackTrace();
-			exit(232);
+			exit("File can't be read.");
 		}
 	}
 
